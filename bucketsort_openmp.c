@@ -45,9 +45,9 @@ void crtbucketsortingElement(int sortarry[], int arylength) {
         k = k + 1;
     }*/
     k = 0;
-    #pragma omp parallel for num_threads (2)
     for (m = 0; m < bucks; m++) {
         qsort(crtbuckets[m].element, crtbuckets[m].number, sizeof(int), &comparevalues);
+        #pragma omp parallel for num_threads (bucks)
         for (j = 0; j < crtbuckets[m].number; j++) {
             sortarry[k + j] = crtbuckets[m].element[j];
         }
